@@ -5,8 +5,8 @@
 #include <opencv/highgui.h>
 
 
-void copyBlock(int filaO, int colO, IplImage * imgO, int filaD, int colD,
-        IplImage *imgD, int height, int width);
+void copyBlock(int rowOr, int colOr, IplImage * imgOr, int rowDest, int colDest,
+        IplImage *imgDest, int height, int width);
 
 int main(int argc, char** argv) {
 
