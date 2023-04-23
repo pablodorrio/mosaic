@@ -4,6 +4,10 @@
 #include <opencv/cv.h>
 #include <opencv/highgui.h>
 
+
+void copyBlock(int filaO, int colO, IplImage * imgO, int filaD, int colD,
+        IplImage *imgD, int height, int width);
+
 int main(int argc, char** argv) {
 
     if (argc != 3) {
@@ -34,13 +38,37 @@ int main(int argc, char** argv) {
     cvShowImage(argv[2], fruits);
     cvWaitKey(0);
 
+    copyBlock(100, 100, fruits, 300, 300, bird, 32, 32);
+
+    cvNamedWindow("Mosaic", CV_WINDOW_NORMAL);
+    cvShowImage("Mosaic", bird);
+    cvWaitKey(0);
+
     // Memory release for img before exiting the application
     cvReleaseImage(&bird);
     cvReleaseImage(&fruits);
 
     cvDestroyWindow(argv[1]);
     cvDestroyWindow(argv[2]);
+    cvDestroyWindow("Mosaic");
 
     return EXIT_SUCCESS;
+
+}
+
+void copyBlock(int rowOr, int colOr, IplImage * imgOr, int rowDest, int colDest,
+        IplImage *imgDest, int height, int width) {
+    int row, column;
+
+    for (row = 0; row < height; row++) {
+        unsigned char *pImag1 = (unsigned char *) (imgOr->imageData + colOr + (rowOr + row) * imgOr->widthStep);
+        unsigned char *pImag2 = (unsigned char *) (imgDest->imageData + colDest + (rowDest + row) * imgDest->widthStep);
+
+        for (column = 0; column < width; column++) {
+            *pImag2++ = *pImag1++;
+            *pImag2++ = *pImag1++;
+            *pImag2++ = *pImag1++;
+        }
+    }
 
 }
