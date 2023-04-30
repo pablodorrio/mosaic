@@ -40,12 +40,29 @@ int main(int argc, char** argv) {
     cvShowImage(argv[2], fruits);
     cvWaitKey(0);
 
-    int compare1 = compareBlock(0, 16, bird, 144, 976, fruits, 16, 16);
-    int compare2 = compareBlock(0, 0, bird, 0, 0, bird, 16, 16);
-    printf("%d\n", compare1);
-    printf("%d\n", compare2);
+    int birdRow, birdColumn;
+    int fruitsRow, fruitsColumn;
+    int blockRow, blockColumn;
+    int min, diff;
 
-    copyBlock(100, 100, fruits, 300, 300, bird, 32, 32);
+    for (birdRow = 0; birdRow < bird->height; birdRow += 16) {
+        for (birdColumn = 0; birdColumn < bird->width; birdColumn += 16) {
+            min = 16 * 16 * 255 * bird->nChannels + 1;
+
+            for (fruitsRow = 0; fruitsRow < fruits->height; fruitsRow += 16) {
+                for (fruitsColumn = 0; fruitsColumn < fruits->width; fruitsColumn += 16) {
+                    diff = compareBlock(birdRow, birdColumn, bird, fruitsRow, fruitsColumn, fruits, 16, 16);
+
+                    if (diff < min) {
+                        min = diff;
+                        blockRow = fruitsRow;
+                        blockColumn = fruitsColumn;
+                    }
+                }
+            }
+            copyBlock(blockRow, blockColumn, fruits, birdRow, birdColumn, bird, 16, 16);
+        }
+    }
 
     cvNamedWindow("Mosaic", CV_WINDOW_NORMAL);
     cvShowImage("Mosaic", bird);
@@ -68,10 +85,8 @@ void copyBlock(int rowOr, int colOr, IplImage * imgOr, int rowDest, int colDest,
     int row, column;
 
     for (row = 0; row < height; row++) {
-        unsigned char *pImg1 = (unsigned char *) (imgOr->imageData + colOr
-                + (rowOr + row) * imgOr->widthStep);
-        unsigned char *pImg2 = (unsigned char *) (imgDest->imageData + colDest
-                + (rowDest + row) * imgDest->widthStep);
+        unsigned char *pImg1 = (unsigned char *) (imgOr->imageData + (rowOr + row) * imgOr->widthStep + colOr * imgOr->nChannels);
+        unsigned char *pImg2 = (unsigned char *) (imgDest->imageData + (rowDest + row) * imgDest->widthStep + colDest * imgDest->nChannels);
 
         for (column = 0; column < width; column++) {
             *pImg2++ = *pImg1++;
@@ -85,22 +100,18 @@ void copyBlock(int rowOr, int colOr, IplImage * imgOr, int rowDest, int colDest,
 int compareBlock(int row1, int column1, IplImage * img1, int row2, int column2,
         IplImage * img2, int height, int width) {
     int row, column;
-    int cc1Diff, cc2Diff, cc3Diff, pxDiff, blockDiff = 0;
+    int cc1Diff, cc2Diff, cc3Diff, blockDiff = 0;
 
     for (row = 0; row < height; row++) {
-        unsigned char * pImg1 = (unsigned char *) (img1->imageData + column1
-                + (row1 + row) * img1->widthStep);
-        unsigned char * pImg2 = (unsigned char *) (img2->imageData + column2
-                + (row2 + row) * img2->widthStep);
+        unsigned char * pImg1 = (unsigned char *) (img1->imageData + column1 * img1->nChannels + (row1 + row) * img1->widthStep);
+        unsigned char * pImg2 = (unsigned char *) (img2->imageData + column2 * img2->nChannels + (row2 + row) * img2->widthStep);
 
         for (column = 0; column < width; column++) {
-            int cc1Diff = abs(*pImg1++ - *pImg2++);
+            cc1Diff = abs(*pImg1++ - *pImg2++);
             cc2Diff = abs(*pImg1++ - *pImg2++);
             cc3Diff = abs(*pImg1++ - *pImg2++);
 
-            pxDiff = cc1Diff + cc2Diff + cc3Diff;
-
-            blockDiff += pxDiff;
+            blockDiff += cc1Diff + cc2Diff + cc3Diff;
         }
     }
 

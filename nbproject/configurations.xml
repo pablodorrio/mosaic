@@ -62,6 +62,10 @@
       <compileType>
         <cTool>
           <developmentMode>5</developmentMode>
+          <incDir>
+            <pElem>C:/opencv3.0.0/include</pElem>
+          </incDir>
+          <commandLine>-msse2</commandLine>
         </cTool>
         <ccTool>
           <developmentMode>5</developmentMode>
