@@ -4,6 +4,8 @@
     <logicalFolder name="HeaderFiles"
                    displayName="Header Files"
                    projectFiles="true">
+      <itemPath>C:/Users/Pablo/Desktop/mosaic/imageProcessing.h</itemPath>
+      <itemPath>C:/Users/Pablo/Desktop/mosaic/mosaicEffect.h</itemPath>
     </logicalFolder>
     <logicalFolder name="ResourceFiles"
                    displayName="Resource Files"
@@ -12,7 +14,9 @@
     <logicalFolder name="SourceFiles"
                    displayName="Source Files"
                    projectFiles="true">
+      <itemPath>C:/Users/Pablo/Desktop/mosaic/imageProcessing.c</itemPath>
       <itemPath>main.c</itemPath>
+      <itemPath>C:/Users/Pablo/Desktop/mosaic/mosaicEffect.c</itemPath>
     </logicalFolder>
     <logicalFolder name="TestFiles"
                    displayName="Test Files"
@@ -50,6 +54,26 @@
           </linkerLibItems>
         </linkerTool>
       </compileType>
+      <item path="C:/Users/Pablo/Desktop/mosaic/imageProcessing.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="C:/Users/Pablo/Desktop/mosaic/imageProcessing.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="C:/Users/Pablo/Desktop/mosaic/mosaicEffect.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="C:/Users/Pablo/Desktop/mosaic/mosaicEffect.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
       <item path="main.c" ex="false" tool="0" flavor2="0">
       </item>
     </conf>
@@ -77,6 +101,26 @@
           <developmentMode>5</developmentMode>
         </asmTool>
       </compileType>
+      <item path="C:/Users/Pablo/Desktop/mosaic/imageProcessing.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="C:/Users/Pablo/Desktop/mosaic/imageProcessing.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="C:/Users/Pablo/Desktop/mosaic/mosaicEffect.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="C:/Users/Pablo/Desktop/mosaic/mosaicEffect.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
       <item path="main.c" ex="false" tool="0" flavor2="0">
       </item>
     </conf>
