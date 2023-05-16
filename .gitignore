@@ -112,6 +112,7 @@ nbbuild/
 dist/
 nbdist/
 .nb-gradle/
+.dep.inc
 
 ### SublimeText ###
 # Cache files for Sublime Text
