@@ -7,11 +7,13 @@
 #include "mosaicEffect.h"
 
 /*
- * 
+ *
  */
-int main(int argc, char** argv) {
+int main(int argc, char **argv)
+{
 
-    if (argc != 3) {
+    if (argc != 3)
+    {
         printf("Usage: %s image_file_name\n", argv[0]);
         return EXIT_FAILURE;
     }
@@ -20,13 +22,15 @@ int main(int argc, char** argv) {
     fruits = cvLoadImage(argv[2], CV_LOAD_IMAGE_UNCHANGED);
 
     // Always check if the program can find a file
-    if (!birds) {
-        printf("Error: fichero %s no leido\n", argv[1]);
+    if (!birds)
+    {
+        printf("Error: file %s not read\n", argv[1]);
         return EXIT_FAILURE;
     }
 
-    if (!fruits) {
-        printf("Error: fichero %s no leido\n", argv[2]);
+    if (!fruits)
+    {
+        printf("Error: file %s not read\n", argv[2]);
         return EXIT_FAILURE;
     }
 
@@ -43,13 +47,15 @@ int main(int argc, char** argv) {
     int filas[NTHREADS];
     int i;
 
-    for (i = 0; i < NTHREADS; i++) {
+    for (i = 0; i < NTHREADS; i++)
+    {
         filas[i] = i;
         printf("\nEl thread %d sustituye las filas %d", i, filas[i]);
-        pthread_create(&threads[i], NULL, (void *) &mosaic_thread, (void *) &filas[i]);
+        pthread_create(&threads[i], NULL, (void *)&mosaic_thread, (void *)&filas[i]);
     }
 
-    for (i = 0; i < NTHREADS; i++) {
+    for (i = 0; i < NTHREADS; i++)
+    {
         pthread_join(threads[i], NULL);
     }
 
@@ -67,4 +73,3 @@ int main(int argc, char** argv) {
 
     return EXIT_SUCCESS;
 }
-
