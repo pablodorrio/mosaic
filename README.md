@@ -4,11 +4,10 @@ Generator of a mosaic from two images. The image most similar to the first one i
 
 ## Results
 
-### Image 1
 <div float="center">
-    <img src="./images/birds.jpg" alt="150" height="150">
-    <img src="./images/fruits.jpg" alt="150" height="150">
-    <img src="./images/mosaic.jpg" alt="150" height="150">
+    <img src="./images/birds.jpg" alt="200" height="200">
+    <img src="./images/fruits.jpg" alt="200" height="200">
+    <img src="./images/mosaic.jpg" alt="200" height="200">
 </div>
 
 ## Performance Optimization
