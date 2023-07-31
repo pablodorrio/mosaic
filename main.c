@@ -50,7 +50,6 @@ int main(int argc, char **argv)
     for (i = 0; i < NTHREADS; i++)
     {
         filas[i] = i;
-        printf("\nEl thread %d sustituye las filas %d", i, filas[i]);
         pthread_create(&threads[i], NULL, (void *)&mosaic_thread, (void *)&filas[i]);
     }
 
